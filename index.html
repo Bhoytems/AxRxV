@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="theme-color" content="#000000">
+<title>Trend Pulse | Bot Chat Signals + Auto Win/Loss</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app-container">
+  <div class="signal-card">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+      <div class="badge">⚡ CHANNEL SIGNAL BOT | 5-MIN ANALYSIS</div>
+      <div class="status-container">
+        <div class="status-indicator">
+          <div id="statusLed" class="status-led offline"></div>
+          <span id="statusText" class="status-text offline">OFFLINE</span>
+        </div>
+      </div>
+    </div>
+    
+    <h1>Trend Pulse<br><span style="font-size: 0.8rem;">Telegram Bot Chat • 7-Min Trade Window • Auto Win/Loss</span></h1>
+
+    <!-- Asset Selection -->
+    <div class="config-section">
+      <div class="config-label">📊 SELECT ASSETS TO MONITOR</div>
+      <div id="assetGrid" class="asset-selector-grid"></div>
+      <div id="selectedCount" class="selected-count">✓ 0 assets selected</div>
+    </div>
+
+    <!-- Telegram Bot Configuration -->
+    <div class="config-section">
+      <div class="config-label">🤖 TELEGRAM BOT SETUP (Messages go to BOT chat)</div>
+      <input type="password" id="botToken" class="config-input" placeholder="Bot Token (from @BotFather)">
+      <div style="font-size: 0.65rem; color: #6c757d; margin-bottom: 10px;">
+        ⚠️ No channel ID needed — bot will send signals & results directly to its own private chat (with you).<br>
+        💡 Start a chat with your bot first, then press "Connect Bot".
+      </div>
+      <div class="button-group">
+        <button id="saveTelegramBtn" class="primary" style="flex: 1;">💾 Connect Bot → My Chat</button>
+        <button id="disconnectBtn" class="danger" style="flex: 1;">🔌 Disconnect</button>
+      </div>
+      <div id="telegramTestResult" style="font-size: 0.7rem; margin-top: 8px;"></div>
+    </div>
+
+    <!-- Manual Analysis Button -->
+    <button id="analyzeBtn" style="width: 100%; margin: 10px 0;">🔍 Manual Analysis Now</button>
+
+    <!-- Timer Display -->
+    <div class="timer-box">
+      <div style="font-size: 0.7rem; color: #8b949e;">⏰ Next Entry Window (WAT - West Africa Time)</div>
+      <div id="tradeTimer" class="timer-digits">--:--</div>
+      <div style="font-size: 0.7rem; margin-top: 5px;">
+        🟢 Signal at :00/:05/:10/:15/:20/:25/:30/:35/:40/:45/:50/:55<br>
+        ✅ Entry: 2 min after signal | ⏱ Trade expiry: 7 min total
+      </div>
+    </div>
+
+    <!-- Signal Display -->
+    <div class="trend-pill" id="signalDisplay">
+      <div class="signal-big neutral">— WAITING —</div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-item"><div class="info-label">Current Price</div><div class="info-value" id="priceVal">—</div></div>
+      <div class="info-item"><div class="info-label">Change (5m)</div><div class="info-value" id="changeVal">—</div></div>
+      <div class="info-item"><div class="info-label">Trend Strength</div><div class="info-value" id="strengthVal">—</div></div>
+    </div>
+
+    <div id="extraIndicators" style="display: flex; justify-content: space-between; gap: 8px; background: #030303; padding: 8px 12px; border-radius: 2rem; font-size: 0.7rem; flex-wrap: wrap;">
+      <span>📊 EMA (9/21): <span id="emaSpan">—</span></span>
+      <span>📈 RSI: <span id="rsiSpan">—</span></span>
+      <span>⚡ Momentum: <span id="momSpan">—</span></span>
+    </div>
+    
+    <div class="last-updated" id="timestampMsg">🟢 Monitoring selected assets (5-min intervals)</div>
+    <div class="info-note">
+      📨 Signals + Win/Loss results automatically sent to YOUR BOT CHAT<br>
+      🔄 Heartbeat ensures bot never goes idle | Auto-reconnect enabled
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
